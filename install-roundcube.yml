@@ -1,0 +1,22 @@
+---
+#*  This playbook installs roundcube from the upstream git repository.
+#*  Use '-a' to pass parameters to ansible (as '-e'). See ansible fetch for
+#* details.
+#*  No arguments are mandatory.
+
+- name: Manage Roundcube Web mail
+  hosts: app.roundcube
+  become: True
+
+  vars:
+    roundcube__default_host: '{{ app__roundcube__default_host }}'
+    roundcube__domain: '{{ app__roundcube__domain }}'
+    roundcube__local_config_map: '{{ app__roundcube__local_config_map }}'
+    roundcube__plugins: '{{ app__roundcube__plugins }}'
+    roundcube__smtp_pass: '{{ app__roundcube__smtp_pass }}'
+    roundcube__smtp_port: '{{ app__roundcube__smtp_port }}'
+    roundcube__smtp_server: '{{ app__roundcube__smtp_server }}'
+    roundcube__smtp_user: '{{ app__roundcube__smtp_user }}'
+
+  roles:
+    - debops-contrib.roundcube
